@@ -1,35 +1,16 @@
-# Roger Guido — sitio profesional
+# Roger Guido
 
-Landing estática en Astro para presentar el perfil de Roger Fernando Guido Cisneros: frontend, análisis funcional y flujos asistidos por IA.
+## [Visita mi espacio profesional →](https://rogerg03.github.io/myrepo-mycareer/)
 
-## Desarrollo
+Este sitio es mi carta de presentación en la web: un lugar para explicar cómo pienso, qué tipo de problemas disfruto resolver y el trabajo que he ido construyendo entre frontend, análisis funcional y producto digital.
 
-```sh
-npm install
-npm run dev
-```
+No pretende ser una lista de tecnologías. Es un recorrido por mi manera de convertir requerimientos, flujos y decisiones complejas en experiencias claras para las personas que las usan.
 
-La compilación de producción se valida con:
+Aquí encontrarás una selección de proyectos, el contexto detrás de cada uno y la práctica que sigo desarrollando en entornos de producto.
 
-```sh
-npm run build
-```
+- [Ver el sitio en español](https://rogerg03.github.io/myrepo-mycareer/)
+- [View the site in English](https://rogerg03.github.io/myrepo-mycareer/en/)
+- [Conectar en LinkedIn](https://www.linkedin.com/in/roger-0113-guido)
+- [Explorar mi GitHub](https://github.com/RogerG03)
 
-## Idiomas
-
-El enrutamiento i18n nativo de Astro genera dos versiones estáticas: español en `/` e inglés en `/en/`. El selector de idioma usa rutas reales y el contenido, el idioma del documento y los metadatos se renderizan en cada versión; las traducciones viven en `src/i18n/ui.ts`.
-
-## SEO al publicar
-
-La página ya incluye título, descripción, Open Graph, robots y datos estructurados de tipo `Person`. Para la compilación de publicación, pasa el dominio público real en `SITE_URL`; esto activa las etiquetas canónicas y `og:url` sin inventar una URL.
-
-```powershell
-$env:SITE_URL = "https://tu-dominio.com"
-npm run build
-```
-
-Con el dominio confirmado, añade también ese mismo origen al sitemap.
-
-## GitHub Pages
-
-El flujo `.github/workflows/deploy.yml` compila y despliega automáticamente al hacer `push` a `main`. Para activarlo una sola vez, en el repositorio abre **Settings → Pages** y selecciona **GitHub Actions** como fuente. La URL prevista es `https://rogerg03.github.io/myrepo-mycareer/`; la configuración ya añade el subdirectorio necesario para enlaces, i18n y SEO.
+Si estás conociendo mi trabajo por primera vez, empieza por el sitio: ahí está la versión más completa y humana de esta presentación.
