@@ -33,7 +33,7 @@ h1, h2, h3 { font-weight: 500; }
 .language-link { padding: 10px 0; }
 .header-link { padding: 11px 18px; border-radius: 50px; background: var(--surface-deep); }
 .header-link span { margin-left: 12px; color: var(--cyan); }
-.hero { padding: 32px var(--page) 65px; max-width: 1800px; margin-inline: auto; }
+.hero { padding: 32px var(--page) 65px; max-width: 1800px; margin-inline: auto; overflow: clip; }
 .hero-meta { display: flex; justify-content: space-between; gap: 24px; color: var(--muted); font-size: 13px; }
 .hero-meta p { margin: 0; }
 .hero h1 { margin: 24px 0 20px -.045em; font-size: clamp(80px, 15.4vw, 268px); line-height: 1.05; letter-spacing: -.075em; white-space: nowrap; }
