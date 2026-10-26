@@ -2,6 +2,7 @@
 import "@fontsource-variable/chivo";
 import "../styles/portfolio.css";
 import CodeScene from "./CodeScene.astro";
+import AmbientBackdrop from "./AmbientBackdrop.astro";
 import { siAnthropic, siAstro, siClaude, siCss, siGit, siGithub, siHtml5, siJavascript, siLanguagetool, siReact, siTypescript, siVitest, siWordpress } from "simple-icons";
 import { getRelativeLocaleUrl } from "astro:i18n";
 import { ui, type Locale } from "../i18n/ui";
@@ -46,6 +47,7 @@ const technologies = [{ name: "Astro", icon: siAstro }, { name: "React", icon: s
   </head>
   <body>
     <a class="skip-link" href="#contenido">{lang === "es" ? "Saltar al contenido" : "Skip to content"}</a>
+    <AmbientBackdrop lang={lang} />
     <header class="site-header"><a class="mark" href="#inicio" aria-label={t.nav.home}>roger<span class="mark-dot">.</span></a><nav aria-label={t.nav.menu}><a href="#proyectos">{t.nav.projects}</a><a href="#practica">{t.nav.practice}</a><a href="#tecnologia">{t.nav.technology}</a><a href="#perfil">{t.nav.profile}</a></nav><div class="header-actions"><a class="language-link" href={alternateLocaleUrl} lang={alternateLang}>{t.nav.language}</a><a class="header-link" href={linkedin} target="_blank" rel="noreferrer">LinkedIn <span aria-hidden="true">↗</span></a></div></header>
     <main id="contenido">
       <section class="hero" id="inicio" aria-labelledby="page-title">

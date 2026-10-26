@@ -1,0 +1,80 @@
+---
+import type { Locale } from "../i18n/ui";
+const { lang } = Astro.props as { lang: Locale };
+const es = lang === "es";
+---
+
+<div class="ambient-backdrop" aria-hidden="true">
+  <div class="ambient-haze haze-one"></div>
+  <div class="ambient-haze haze-two"></div>
+  <svg class="ambient-dust" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+    {Array.from({ length: 32 }, (_, i) => <circle cx={(i * 233 + 71) % 1440} cy={(i * 137 + 43) % 900} r={i % 5 === 0 ? 1.6 : .8} />)}
+  </svg>
+  <div class="cursor-light"></div>
+</div>
+<button class="ambient-toggle" type="button" hidden aria-pressed="false" data-pause={es ? "Pausar fondo" : "Pause background"} data-play={es ? "Reanudar fondo" : "Resume background"}>{es ? "Pausar fondo" : "Pause background"}</button>
+
+<script>
+  const backdrop = document.querySelector<HTMLElement>(".ambient-backdrop")!;
+  const light = backdrop.querySelector<HTMLElement>(".cursor-light")!;
+  const button = document.querySelector<HTMLButtonElement>(".ambient-toggle")!;
+  const reduced = matchMedia("(prefers-reduced-motion: reduce)");
+  const fine = matchMedia("(hover: hover) and (pointer: fine)");
+  let paused = false;
+  let frame = 0;
+  let x = 0;
+  let y = 0;
+  const clearPointer = () => {
+    cancelAnimationFrame(frame);
+    frame = 0;
+    backdrop.classList.remove("has-pointer");
+  };
+  const sync = () => {
+    backdrop.dataset.motion = !paused && !reduced.matches && !document.hidden ? "running" : "paused";
+    button.hidden = reduced.matches;
+    button.setAttribute("aria-pressed", String(paused));
+    button.textContent = (paused ? button.dataset.play : button.dataset.pause)!;
+    if (backdrop.dataset.motion === "paused" || !fine.matches) clearPointer();
+  };
+  window.addEventListener("pointermove", (event) => {
+    if (backdrop.dataset.motion !== "running" || !fine.matches || event.pointerType === "touch") return;
+    x = event.clientX;
+    y = event.clientY;
+    // Coalesce pointer events; CSS handles the smooth follow without an idle frame loop.
+    if (!frame) frame = requestAnimationFrame(() => {
+      light.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+      backdrop.classList.add("has-pointer");
+      frame = 0;
+    });
+  }, { passive: true });
+  document.documentElement.addEventListener("pointerleave", clearPointer);
+  window.addEventListener("blur", clearPointer);
+  button.addEventListener("click", () => { paused = !paused; sync(); });
+  reduced.addEventListener("change", sync);
+  fine.addEventListener("change", sync);
+  document.addEventListener("visibilitychange", sync);
+  sync();
+</script>
+
+<style>
+  /* Screen blending adds a faint blue light without darkening text or intercepting input. */
+  .ambient-backdrop{position:fixed;inset:0;z-index:3;overflow:hidden;pointer-events:none;mix-blend-mode:screen;opacity:.24;contain:strict}
+  .ambient-haze{position:absolute;width:75vmax;height:75vmax;border-radius:50%;background:radial-gradient(ellipse,#256dd33d 0%,#124caa18 35%,transparent 68%)}
+  .haze-one{left:-25vmax;top:-20vmax}.haze-two{right:-30vmax;bottom:-35vmax;background:radial-gradient(ellipse,#62b8ed29 0%,#256dd318 35%,transparent 68%)}
+  .ambient-dust{position:absolute;inset:-3%;width:106%;height:106%;fill:#9bd6ff;opacity:.42}
+  .cursor-light{position:absolute;left:0;top:0;width:700px;height:700px;margin:-350px;border-radius:50%;background:radial-gradient(circle,#62b8ed40 0%,#256dd326 24%,transparent 66%);transform:translate3d(50vw,45vh,0);opacity:0;transition:transform 900ms var(--ease),opacity 700ms ease}
+  .has-pointer .cursor-light{opacity:1}
+  .ambient-toggle{position:fixed;z-index:4;right:18px;bottom:18px;min-height:44px;padding:10px 14px;border:1px solid #62b8ed33;border-radius:6px;background:#071426e6;color:#b0c4df;font:inherit;font-size:12px;cursor:pointer}
+  .ambient-toggle[hidden]{display:none}.ambient-toggle:focus-visible{outline:3px solid #62b8ed;outline-offset:4px}
+  :global(footer){padding-bottom:88px}
+  @media(prefers-reduced-motion:no-preference){
+    [data-motion] .haze-one{animation:ambient-drift 24s cubic-bezier(.77,0,.175,1) infinite alternate}
+    [data-motion] .haze-two{animation:ambient-drift 30s cubic-bezier(.77,0,.175,1) -12s infinite alternate-reverse}
+    [data-motion] .ambient-dust{animation:dust-drift 32s linear infinite alternate}
+    [data-motion="paused"] .ambient-haze,[data-motion="paused"] .ambient-dust{animation-play-state:paused}
+  }
+  @keyframes ambient-drift{to{transform:translate3d(10vw,7vh,0) scale(1.08)}}
+  @keyframes dust-drift{to{transform:translate3d(1.5%,2%,0)}}
+  @media(prefers-reduced-motion:reduce){.cursor-light{display:none;transition:none}.ambient-dust{opacity:.25}}
+  @media(max-width:600px){.ambient-backdrop{opacity:.17}.ambient-toggle{right:12px;bottom:12px;font-size:11px}}
+</style>
