@@ -1,35 +1,15 @@
-# Diseño — sitio profesional de Roger Guido
+# Diseño — Roger Guido
 
-## Dirección
+La referencia es Auros (https://styles.refero.design/style/21cfe0c1-778d-4613-9f47-a5718eb929b3): profundidad oscura, luz concentrada y tipografía amplia. Se conserva la identidad propia: Chivo Variable, azul #256dd3, azul profundo #124caa, cian #62b8ed y blanco frío #f6f9ff. El fondo nocturno #071426 y las superficies #0c203a y #112b52 adaptan esa paleta al contraste oscuro.
 
-Flujos claros en azul: el sitio presenta el trabajo de Roger como la traducción de requerimientos y sistemas complejos hacia interfaces comprensibles. Evita fotografía conceptual y usa ilustraciones de interfaz creadas en código.
+El nombre funciona como pieza principal. Debajo, una composición de código e interfaz en perspectiva representa el proceso de convertir requerimientos en experiencias claras. Es una ilustración, no código de cliente ni captura de un producto. Se construye con HTML, SVG y transformaciones CSS 3D, sin WebGL ni dependencias nuevas. Los paneles se disuelven en partículas y vuelven a formarse en ciclos de 12 segundos, con dos segundos de desfase; la malla del núcleo gira lentamente. CSS anima transformaciones, opacidad y el recorte de las superficies, sin un bucle JavaScript por fotograma. El usuario puede pausar el efecto, que también se detiene fuera de pantalla o con la pestaña oculta. Movimiento reducido y ausencia de JavaScript conservan los paneles estáticos.
 
-## Primera pantalla
+Los estudios conservan su contexto real: Syllabus institucional, gestión de rentas con avance parcial y colaboración freelance en México. Sus interfaces siguen siendo representaciones ilustrativas. La experiencia financiera se describe sin identificar empresa ni sistemas internos.
 
-Una declaración de rol junto a un diagrama SVG de requerimientos, análisis, interfaz, producto, QA e IA. Es una metáfora funcional del enfoque profesional, no una imagen de un proyecto real.
+Los gradientes dan volumen a los dos núcleos luminosos y a la luz ambiental; los paneles en perspectiva usan sombra para expresar distancia. Las etiquetas de contexto mantienen información profesional. Son excepciones deliberadas a las reglas generales de la skill de diseño para seguir la referencia solicitada. Se omiten fotografía y video porque no hay material propio verificado. Las ilustraciones explican el trabajo sin aparentar capturas reales.
 
-## Estudios de trabajo
+El fondo ambiental combina dos luces difusas y 32 puntos muy tenues con movimiento lento. La capa usa 24% de opacidad en escritorio y 17% en móvil; los gradientes tienen además su propia transparencia. Una luz sigue suavemente al cursor mediante transiciones CSS y actualizaciones agrupadas por fotograma sólo al mover el puntero. No intercepta clics, no sigue los toques y permite pausa independiente. Se detiene con la pestaña oculta y queda estático con movimiento reducido o sin JavaScript.
 
-- Syllabus: una simulación tipo navegador muestra el recorrido Ciclo académico → Plan analítico → Plan temático, usando como acentos el verde `#238937`, azul `#0C4975` y celeste `#0f5d96` verificados en su código público.
-- Software de gestión de renta de vehículos: una simulación móvil con volumen y luz resume un producto de renta con vistas de clientes, rentas y autos; se rotula expresamente como representación editorial, no réplica.
-- Colaboración freelance en México: un recorrido secuencial muestra acceso, cuestionario, resultado y contenido.
-- Experiencia actual: un mapa de productos financieros digitales presenta trabajo dentro de un entorno empresarial del sector financiero —requerimientos, aplicaciones públicas, pruebas y componentes compartidos— sin identificar empresa ni exponer operaciones.
+La página conserva español e inglés, navegación por anclas, enlaces públicos, metadata y datos estructurados. La navegación permanece disponible en móvil. El contenido principal usa 16px; las simulaciones tienen su escala ilustrativa. Hay foco visible, salto al contenido, movimiento reducido y contenido legible sin JavaScript. El carril de tecnologías se pausa con foco o hover y permite desplazamiento manual con movimiento reducido.
 
-Las tres piezas son ilustrativas, no capturas ni afirmaciones de funcionalidades exactas. No enlazan a repositorios privados; los únicos enlaces externos públicos son GitHub y LinkedIn.
-
-## Sistema
-
-- Fondo claro, azul profundo, azul medio y cian; sin amarillo ni fotografía generada. Syllabus incorpora su paleta propia sólo dentro de su estudio.
-- Chivo Variable es la única familia tipográfica.
-- Profundidad limitada a los dispositivos ilustrativos; el resto se organiza con superficies planas y contraste tipográfico.
-- Movimiento breve para entrada y trazos SVG, con alternativa completa para `prefers-reduced-motion`.
-- El stack se presenta como un carril de marcas tipográficas con desplazamiento suave solicitado por el usuario; se pausa con hover/foco y se convierte en desplazamiento manual al reducir movimiento.
-- La landing se publica de forma estática en español e inglés con el enrutamiento i18n nativo de Astro. El selector lleva a rutas reales y el copy, `lang` y metadata cambian juntos.
-
-## Límites
-
-- No afirmar métricas, entregas totales o resultados de clientes no verificados.
-- Syllabus se presenta como software institucional desplegado; la participación se limita a frontend y trabajo de flujo/calidad documentados.
-- El software de gestión de renta de vehículos se describe como avance parcial cuya comunicación con cliente se detuvo al cierre.
-- Evaluación Digital y Digitalis Webinar se agrupan como colaboración freelance, sin atribuir resultados específicos.
-- Space Apps Challenge permanece fuera del sitio hasta contar con un anuncio propio.
+Validación reproducible: npm ci, npm test. Para comprobar los enlaces de GitHub Pages, ejecutar con GITHUB_ACTIONS=true. Revisión visual a 1440, 768 y 390px; comprobación adicional a 320px.
